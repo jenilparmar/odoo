@@ -10,10 +10,10 @@ function App() {
     <>
       <div className="w-screen h-screen flex flex-col justify-center overflow-x-hidden ">
         {/* <Login /> */}
-       {/* <Signup /> */}
+       <Signup />
        {/* <Home/> */}
-       <Crime/>
-       <Navbar/>
+       {/* <Crime/>
+       <Navbar/> */}
       </div>
     </>
   );

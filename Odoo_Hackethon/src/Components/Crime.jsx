@@ -62,20 +62,20 @@ export default function Crime() {
       alert(res.data)
     })
     .catch(e=>{
-      alert(e)
+      console.log(e);
     })
-    // setFormData({
-    //   crimeType: "",
-    //   dateFound: "",
-    //   description: "",
-    //   severityLevel: "",
-    //   contactName: "",
-    //   contactNumber: "",
-    //   additionalInfo: "",
-    //   files: null,
-    //   latitude: null,
-    //   longitude: null,
-    // })
+    setFormData({
+      crimeType: "",
+      dateFound: "",
+      description: "",
+      severityLevel: "",
+      contactName: "",
+      contactNumber: "",
+      additionalInfo: "",
+      files: null,
+      latitude: null,
+      longitude: null,
+    })
     
   };
 
