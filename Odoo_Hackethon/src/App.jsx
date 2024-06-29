@@ -8,7 +8,7 @@ import Crime from "./Components/Crime";
 function App() {
   return (
     <>
-      <div className="w-screen h-screen flex flex-col justify-center overflow-y-scroll">
+      <div className="w-screen h-screen flex flex-col justify-center overflow-x-hidden ">
         {/* <Login /> */}
        {/* <Signup /> */}
        {/* <Home/> */}
