@@ -65,8 +65,20 @@ const Map = () => {
     document.body.removeChild(link);
   };
   const name = localStorage.getItem("Admin");
-  const name2 = localStorage.getItem("policeman");
-  
+
+  const removeCrime =(id)=>{
+    axios({
+      url:`http://localhost:8000/RemoveCrime/${id}`,
+      method:"GET"
+      
+    })
+    .then(res=>{
+      alert("Deleted")
+    })
+    .catch(e=>{
+      console.log(e);
+    })
+  }
   return (
     <>
       <h1 className="text-green-600 text-5xl self-center relative -top-12 font-bold">
@@ -109,7 +121,9 @@ const Map = () => {
                   <p>Additional Info: {crime.additionalInfo}</p>
                 </div>
                 <div className="self-center flex flex-col">
-                  {name==="Admin"?<button className="self-center bg-red-500 p-2 rounded-lg active:bg-red-700">
+                  {name==="Admin"?<button className="self-center bg-red-500 p-2 rounded-lg active:bg-red-700" onClick={()=>{
+                    removeCrime(crime['_id'])
+                  }}>
                     Remove
                   </button>:undefined
                   }<br />
@@ -144,7 +158,7 @@ const Map = () => {
           center={center}
           className="map self-center border-2 border-black"
           zoom={zoom}
-          style={{ height: "400px", width: "500px" }}>
+          style={{ height: "385px", width: "500px" }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

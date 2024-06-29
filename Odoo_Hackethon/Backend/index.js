@@ -39,7 +39,30 @@ app.post('/CrimeReport', (req, res) => {
       res.status(500).send(e);
     });
 });
-
+app.get('/SpecificCrime/:key/:value',(req,res)=>{
+const key1= req.params.key;
+const value = req.params.value
+db.collection("CrimeReport")
+.find({[key1]:value})
+.toArray()
+.then(data=>{
+  res.send(data)
+})
+.catch(e=>{
+  res.send(e)
+})
+})
+app.get("/RemoveCrime/:id",(req,res)=>{
+  const id = req.params.id
+  db.collection("CrimeReport")
+  .deleteOne({_id : new ObjectId(id)})
+  .then(data=>{
+    res.send(data)
+  })
+  .catch(e=>{
+    res.send(e)
+  })
+})
 
 app.get('/GetCrimeReport', (req, res) => {
   db.collection('CrimeReport')

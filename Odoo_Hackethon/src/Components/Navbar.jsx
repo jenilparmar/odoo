@@ -4,7 +4,7 @@ export default function Navbar() {
   const {setCrimeReport , setWindow} = useContext(StateContext)
   const name = localStorage.getItem("Admin")
   const name2 = localStorage.getItem("policeman")
-  alert(name)
+  // alert(name)
   return (
     <div className=" z-10 fixed bottom-2 w-10/12 h-20 rounded-lg bg-slate-400 self-center my-2 flex flex-row justify-around ">
       <div className="text-center self-center">
