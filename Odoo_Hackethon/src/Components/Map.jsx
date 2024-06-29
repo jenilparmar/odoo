@@ -65,6 +65,7 @@ const Map = () => {
     document.body.removeChild(link);
   };
   const name = localStorage.getItem("Admin");
+  const name2 = localStorage.getItem("policeman");
   
   return (
     <>
@@ -108,7 +109,7 @@ const Map = () => {
                   <p>Additional Info: {crime.additionalInfo}</p>
                 </div>
                 <div className="self-center flex flex-col">
-                  {name?<button className="self-center bg-red-500 p-2 rounded-lg active:bg-red-700">
+                  {name==="Admin"?<button className="self-center bg-red-500 p-2 rounded-lg active:bg-red-700">
                     Remove
                   </button>:undefined
                   }<br />

@@ -35,7 +35,10 @@ export default function Signup() {
       setIsLogin(true);
       setHomePage(true);
       
-        localStorage.setItem(formData.role, formData.role);
+       if(formData.role==="policeman") {
+        alert(formData.role)
+        localStorage.setItem("policeman", formData.role);}
+       if(formData.role==="Admin") localStorage.setItem("Admin", formData.role);
   
       localStorage.setItem("name", formData.name);
       setWindow("Home");
