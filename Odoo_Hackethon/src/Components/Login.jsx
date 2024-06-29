@@ -4,7 +4,7 @@ import axios from "axios";
 import StateContext from "./myContext";
 
 export default function Login() {
-  const { setIsLogin , setSignup, setHomePage} = useContext(StateContext);
+  const { setIsLogin , setSignup, setHomePage, setWindow} = useContext(StateContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -32,6 +32,7 @@ export default function Login() {
         }
         setIsLogin(true);
         setHomePage(res.data)
+        if(res.data) setWindow("Home")
 
         console.log(res);
         

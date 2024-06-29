@@ -2,7 +2,7 @@ const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 const cors = require("cors");
 const dotenv = require("dotenv");
-
+const bodyParser = require('body-parser');
 dotenv.config();
 PORT = 8000;
 const app = express();
@@ -22,7 +22,7 @@ app.use(
     credentials: true,
   })
 );
-
+app.use(bodyParser.json());
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("ji");
@@ -36,6 +36,18 @@ app.post("/CrimeReport", (req, res) => {
     })
     .catch((e) => {
       res.send(e);
+    });
+});
+
+app.get('/GetCrimeReport', (req, res) => {
+  db.collection('CrimeReport')
+    .find()
+    .toArray() 
+    .then((data) => {
+      res.send(data); 
+    })
+    .catch((e) => {
+      res.status(500).json({ error: 'Error fetching crime reports' });
     });
 });
 app.post("/UserData", (req, res) => {
@@ -54,23 +66,18 @@ app.post("/CheckValidUser", (req, res) => {
 
   db.collection("UserData")
     .findOne({
-      $and: [
-        { email: formData.email },
-        { password: formData.password }
-      ]
+      $and: [{ email: formData.email }, { password: formData.password }],
     })
-    .then(data => {
+    .then((data) => {
       if (data) {
- 
         res.send(true);
       } else {
-       
         res.send(false);
       }
     })
-    .catch(e => {
-      console.error('Error finding user:', e);
-      res.status(500).json({ error: 'Internal Server Error' });
+    .catch((e) => {
+      console.error("Error finding user:", e);
+      res.status(500).json({ error: "Internal Server Error" });
     });
 });
 

@@ -20,7 +20,7 @@ export default function Signup() {
       [name]: value
     });
   };
-  const {setSignup,setHomePage} = useContext(StateContext)
+  const {setSignup,setHomePage , setWindow} = useContext(StateContext)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +36,7 @@ export default function Signup() {
       // alert("Submiteeed")
       setIsLogin(true)
       setHomePage(true)
+      setWindow("Home")
     })
     .catch(e=>{
       console.log(e);
