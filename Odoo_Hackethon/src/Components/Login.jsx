@@ -4,7 +4,7 @@ import axios from "axios";
 import StateContext from "./myContext";
 
 export default function Login() {
-  const { setIsLogin , setSignup, setHomePage, setWindow} = useContext(StateContext);
+  const { setIsLogin, setSignup, setHomePage, setWindow } = useContext(StateContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,22 +20,20 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(formData);
     axios({
       url: "http://localhost:8000/CheckValidUser",
       method: "POST",
       data: formData,
     })
       .then((res) => {
-        {
-          !res.data ? alert("Please check Email and password") : undefined;
+        if (!res.data) {
+          alert("Please check Email and password");
         }
         setIsLogin(true);
-        setHomePage(res.data)
-        if(res.data) setWindow("Home")
+        setHomePage(res.data);
+        if (res.data) setWindow("Home");
 
         console.log(res);
-        
       })
       .catch((e) => {
         console.log(e);
@@ -43,40 +41,43 @@ export default function Login() {
   };
 
   return (
-    <div className="shadow-md w-72 max-w-md md:max-w-sm lg:max-w-lg self-center h-auto md:h-96 bg-slate-300 border-2 border-black flex flex-col justify-center gap-2 rounded-md p-6">
-      <strong className="text-green-600 font-semibold text-3xl py-4 text-center">
+    <div className="shadow-md w-72 max-w-md md:max-w-sm lg:max-w-lg self-center h-auto md:h-96 bg-slate-300 border-2 border-black flex flex-col justify-center gap-4 rounded-md p-6">
+      <strong className="text-green-600 font-semibold text-3xl text-center">
         Login
       </strong>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <Input
           name="email"
-          placeholder={"Email"}
-          type={"email"}
+          placeholder="Email"
+          type="email"
           value={formData.email}
           onChange={handleInputChange}
         />
         <Input
           name="password"
-          placeholder={"Password"}
-          type={"password"}
+          placeholder="Password"
+          type="password"
           value={formData.password}
           onChange={handleInputChange}
         />
-        <div className="self-end mx-5">
-          <p className="text-green-600 font-medium self-end cursor-pointer">
+        <div className="flex justify-end">
+          <p className="text-green-600 font-medium cursor-pointer">
             Forgot Password
           </p>
         </div>
-        <button className="bg-green-600 active:bg-green-700 p-2 text-xl md:text-2xl h-12 w-full rounded-md font-semibold text-gray-800 my-2">
+        <button className="bg-green-600 active:bg-green-700 text-xl md:text-2xl h-12 rounded-md font-semibold text-gray-800">
           Login
         </button>
       </form>
-      <div className="self-center w-fit flex flex-row">
-        <p className="text-green-600 font-medium self-end">New to this?</p>
-        <p className="font-medium text-blue-500 mx-1 hover:text-blue-600 cursor-pointer" onClick={()=>{
-          setSignup(true)
-        }}>
-          Signin
+      <div className="flex items-center justify-center mt-4">
+        <p className="text-green-600 font-medium">New to this?</p>
+        <p
+          className="font-medium text-blue-500 ml-1 cursor-pointer hover:text-blue-600"
+          onClick={() => {
+            setSignup(true);
+          }}
+        >
+          Sign up
         </p>
       </div>
     </div>

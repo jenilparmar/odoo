@@ -33,12 +33,13 @@ useGSAP(()=>{
 
   })
 })
+const name = localStorage.getItem("name")
   return (
 
     <>
       <div className="w-11/12 h-fit  flex flex-col self-center ">
         <p className=" text-8xl font-bold text-green-600 self-center relative  ">
-          Welcome Jenil
+          Welcome {name}
         </p>
         <div className="Name w-1 h-1 rounded-lg bg-black self-center"></div>
         <p className=" self-center p-2 text-2xl text-green-700 font-medium relative ">

@@ -64,7 +64,8 @@ const Map = () => {
     link.click();
     document.body.removeChild(link);
   };
-
+  const name = localStorage.getItem("Admin");
+  
   return (
     <>
       <h1 className="text-green-600 text-5xl self-center relative -top-12 font-bold">
@@ -107,10 +108,10 @@ const Map = () => {
                   <p>Additional Info: {crime.additionalInfo}</p>
                 </div>
                 <div className="self-center flex flex-col">
-                  <button className="self-center bg-red-500 p-2 rounded-lg active:bg-red-700">
+                  {name?<button className="self-center bg-red-500 p-2 rounded-lg active:bg-red-700">
                     Remove
-                  </button>
-                  <br />
+                  </button>:undefined
+                  }<br />
                   <button
                     className="self-center bg-red-500 p-2 rounded-lg active:bg-red-700"
                     onClick={() => {

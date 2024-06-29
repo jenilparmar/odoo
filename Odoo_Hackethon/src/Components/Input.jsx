@@ -6,6 +6,7 @@ const Input = ({ placeholder, type,value ,onChange ,name}) => {
       type={type}
       value={value}
       name={name}
+      required
       onChange={onChange}
       placeholder={placeholder}
       className='bg-transparent border-2 border-green-600 focus:ring-green-600 rounded-md h-12 p-2 w-11/12 self-center'
