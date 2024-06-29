@@ -49,6 +49,31 @@ app.post("/UserData", (req, res) => {
       res.send(e);
     });
 });
+app.post("/CheckValidUser", (req, res) => {
+  const formData = req.body;
+
+  db.collection("UserData")
+    .findOne({
+      $and: [
+        { email: formData.email },
+        { password: formData.password }
+      ]
+    })
+    .then(data => {
+      if (data) {
+ 
+        res.send(true);
+      } else {
+       
+        res.send(false);
+      }
+    })
+    .catch(e => {
+      console.error('Error finding user:', e);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

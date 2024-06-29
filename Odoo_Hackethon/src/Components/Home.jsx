@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import StateContext from "./myContext";
 
 export default function Home() {
+
   return (
     <>
       <div className="w-11/12 h-fit  flex flex-col self-center ">

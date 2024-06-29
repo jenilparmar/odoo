@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Input from "./Input";
 import axios from 'axios'
+import StateContext from './myContext';
 export default function Signup() {
-
+  const {setIsLogin}= useContext(StateContext)
   const [formData, setFormData] = useState({
     name: '',
     age: '',
@@ -19,6 +20,7 @@ export default function Signup() {
       [name]: value
     });
   };
+  const {setSignup,setHomePage} = useContext(StateContext)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,7 +33,9 @@ export default function Signup() {
     })
     .then(res=>{
       console.log(res.data);
-      alert("Submiteeed")
+      // alert("Submiteeed")
+      setIsLogin(true)
+      setHomePage(true)
     })
     .catch(e=>{
       console.log(e);
@@ -111,7 +115,9 @@ export default function Signup() {
           </button>
           <p className='flex flex-row self-center text-green-600'>
             Already have an account?
-            <span className='text-blue-500 mx-1 hover:text-blue-600 cursor-pointer'>Login</span>
+            <span className='text-blue-500 mx-1 hover:text-blue-600 cursor-pointer' onClick={()=>{
+              setSignup(false)
+            }}>Login</span>
           </p>
         </div>
       </div>
