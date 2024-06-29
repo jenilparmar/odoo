@@ -17,14 +17,14 @@ export default function Navbar() {
           setWindow("Crime")
         }}></i>
         <br />
-        Crime
+        Crime Report
       </div>
       <div className="text-center self-center">
         <i class="fa-solid fa-map-location-dot" onClick={()=>{
           setWindow("Map")
         }}></i>
         <br />
-        Map
+        Map View
       </div>
     </div>
   );

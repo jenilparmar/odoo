@@ -27,17 +27,19 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("ji");
 });
-app.post("/CrimeReport", (req, res) => {
+app.post('/CrimeReport', (req, res) => {
   const formData = req.body;
-  db.collection("CrimeReport")
+
+  db.collection('CrimeReport')
     .insertOne(formData)
     .then((data) => {
-      res.send("Report Submitted!!");
+      res.send('Report Submitted!!');
     })
     .catch((e) => {
-      res.send(e);
+      res.status(500).send(e);
     });
 });
+
 
 app.get('/GetCrimeReport', (req, res) => {
   db.collection('CrimeReport')
