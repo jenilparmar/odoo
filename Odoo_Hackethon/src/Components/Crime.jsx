@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from 'axios';
 export default function Crime() {
   const [formData, setFormData] = useState({
     crimeType: "",
@@ -53,19 +53,30 @@ export default function Crime() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-    setFormData({
-      crimeType: "",
-      dateFound: "",
-      description: "",
-      severityLevel: "",
-      contactName: "",
-      contactNumber: "",
-      additionalInfo: "",
-      files: null,
-      latitude: null,
-      longitude: null,
+    axios({
+      url:'http://localhost:8000/CrimeReport',
+      method:"POST",
+      data:formData
     })
-    // You can add your submission logic here
+    .then(res=>{
+      alert(res.data)
+    })
+    .catch(e=>{
+      alert(e)
+    })
+    // setFormData({
+    //   crimeType: "",
+    //   dateFound: "",
+    //   description: "",
+    //   severityLevel: "",
+    //   contactName: "",
+    //   contactNumber: "",
+    //   additionalInfo: "",
+    //   files: null,
+    //   latitude: null,
+    //   longitude: null,
+    // })
+    
   };
 
   return (
